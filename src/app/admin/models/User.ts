@@ -4,6 +4,7 @@ export class User {
     public nomUsu: string | null = null,
     public patUsu: string | null = null,
     public matUsu: string | null = null,
-    public celUsu: string | null = null
+    public celUsu: string | null = null,
+    public fecNacUsu: string | null = null
   ) { }
 }

@@ -1,15 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NgbCarouselModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbDatepickerModule, NgbDateStruct, NgbInputDatepicker, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../models/User';
 import { UsersService } from './users.service';
 import { ModalBase } from '../components/modal-base/modal-base';
 import { NotificationsService } from '../components/notifications/notifications.service';
+import { Utils } from '../utils/utils/utils';
+import { DatePicker } from "../components/date-picker/date-picker";
 
 @Component({
   selector: 'app-users',
-  imports: [CommonModule, FormsModule,NgbCarouselModule],
+  imports: [CommonModule, FormsModule, NgbCarouselModule, NgbDatepickerModule, DatePicker],
   templateUrl: './users.html',
   standalone: true,
   styleUrl: './users.css'
@@ -27,7 +29,8 @@ export class Users {
   constructor(
     private userService: UsersService,
     private modalService: NgbModal
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.loadUsers();
@@ -70,10 +73,12 @@ export class Users {
   }
 
   saveUser(modalRef?: any) {
+    console.log('Users.saveUser', this.newUser);
     if (this.isProcessing) {
       return;
     }
     this.isProcessing = true;
+
     this.userService.createUser(this.newUser).subscribe({
       next: (data) => {
         this.loadUsers(); // Recargar la lista de usuarios
@@ -152,4 +157,5 @@ export class Users {
       }
     });
   }
+
 }

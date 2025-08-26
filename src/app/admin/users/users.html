@@ -24,6 +24,11 @@
         <label for="celUsu" class="form-label">Celular:</label>
         <input [(ngModel)]="newUser.celUsu" type="text" class="form-control" name="celUsu">
       </div>
+      <div class="col-md-6">
+        <label for="fecNacUsu" class="form-label">Fecha de nacimiento:</label>
+        <app-date-picker [(value)]="newUser.fecNacUsu">
+        </app-date-picker>
+      </div>
     </form>
   </ng-template>
   <ng-template #contentRegisterButton>
@@ -51,6 +56,11 @@
       <div class="col-md-6">
         <label for="celUsu" class="form-label">Celular:</label>
         <input [(ngModel)]="updUser.celUsu" type="text" class="form-control" name="celUsu">
+      </div>
+      <div class="col-md-6">
+        <label for="fecNacUsu" class="form-label">Fecha de nacimiento:</label>
+        <app-date-picker [(value)]="updUser.fecNacUsu">
+        </app-date-picker>
       </div>
     </form>
   </ng-template>
@@ -97,6 +107,10 @@
         <td style="text-align: right;"><b>CELULAR:</b></td>
         <td>{{ updUser.celUsu }}</td>
       </tr>
+      <tr>
+        <td style="text-align: right;"><b>FECHA DE NACIMIENTO:</b></td>
+        <td>{{ updUser.fecNacUsu }}</td>
+      </tr>
     </table>
   </ng-template>
   <ng-template #contentDataButton>
@@ -113,6 +127,7 @@
           <th>APELLIDO PATERNO</th>
           <th>APELLIDO MATERNO</th>
           <th>CELULAR</th>
+          <th>FEC.NAC.</th>
           <th>ACCIONES</th>
         </thead>
         <tbody>
@@ -122,6 +137,7 @@
             <td>{{ user.patUsu }}</td>
             <td>{{ user.matUsu }}</td>
             <td>{{ user.celUsu }}</td>
+            <td>{{ user.fecNacUsu}}</td>
             <td>
               <button class="btn btn-primary btn-sm"
                 (click)="openModalData(user,userDataTemplate,contentDataButton, 'Datos de Usuario')">Ver</button>

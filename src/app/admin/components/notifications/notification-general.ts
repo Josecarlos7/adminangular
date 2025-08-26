@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   imports: [NgbToastModule, AsyncPipe],
   standalone: true,
   template: `
-  <div class="toast-overlay">
+  <div class="toast-container">
 		@for (toast of toastService.toasts$ | async; track $index; let i = $index) {
       <ngb-toast
         [class]="getToastClass(toast.type)"

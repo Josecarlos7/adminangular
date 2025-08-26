@@ -1,0 +1,5 @@
+<div class="input-group">
+    <input class="form-control" placeholder="dd/mm/yyyy" [(ngModel)]="datePicker" (dateSelect)="onDateChange()"
+        ngbDatepicker #d="ngbDatepicker" readonly [maxDate]="maxDate" [minDate]="minDate" />
+    <button class="btn btn-outline-secondary" (click)="d.toggle()">📅</button>
+</div>
