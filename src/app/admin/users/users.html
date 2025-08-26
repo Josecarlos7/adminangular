@@ -1,1 +1,138 @@
-<p>users works!</p>
+<div class="container mt-5">
+  <h1>Ejemplo de Modal Completamente Genérico</h1>
+  <hr>
+
+  <button class="btn btn-success"
+    (click)="openModalRegistro(userRegisterTemplate, contentRegisterButton, 'Registro de Usuario')">
+    Registrar Usuario
+  </button>
+  <ng-template #userRegisterTemplate>
+    <form class="col-md-12 row">
+      <div class="col-md-6">
+        <label for="nomUsu" class="form-label">Nombre:</label>
+        <input [(ngModel)]="newUser.nomUsu" type="text" class="form-control" name="nomUsu">
+      </div>
+      <div class="col-md-6">
+        <label for="patUsu" class="form-label">Apellido Paterno:</label>
+        <input [(ngModel)]="newUser.patUsu" type="text" class="form-control" name="patUsu">
+      </div>
+      <div class="col-md-6">
+        <label for="matUsu" class="form-label">Apellido Materno:</label>
+        <input [(ngModel)]="newUser.matUsu" type="text" class="form-control" name="matUsu">
+      </div>
+      <div class="col-md-6">
+        <label for="celUsu" class="form-label">Celular:</label>
+        <input [(ngModel)]="newUser.celUsu" type="text" class="form-control" name="celUsu">
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #contentRegisterButton>
+    <button type="button" class="btn btn-success" (click)="saveUser()" [disabled]="isProcessing">
+      <span *ngIf="isProcessing" class="spinner-border spinner-border-sm me-2" role="status"></span>
+      {{ isProcessing ? 'Procesando...' : 'Registrar Usuario' }}
+    </button>
+  </ng-template>
+
+
+  <ng-template #userUpdateTemplate>
+    <form class="col-md-12 row">
+      <div class="col-md-6">
+        <label for="nomUsu" class="form-label">Nombre:</label>
+        <input [(ngModel)]="updUser.nomUsu" type="text" class="form-control" name="nomUsu">
+      </div>
+      <div class="col-md-6">
+        <label for="patUsu" class="form-label">Apellido Paterno:</label>
+        <input [(ngModel)]="updUser.patUsu" type="text" class="form-control" name="patUsu">
+      </div>
+      <div class="col-md-6">
+        <label for="matUsu" class="form-label">Apellido Materno:</label>
+        <input [(ngModel)]="updUser.matUsu" type="text" class="form-control" name="matUsu">
+      </div>
+      <div class="col-md-6">
+        <label for="celUsu" class="form-label">Celular:</label>
+        <input [(ngModel)]="updUser.celUsu" type="text" class="form-control" name="celUsu">
+      </div>
+    </form>
+  </ng-template>
+  <ng-template #contentUpdateButton>
+    <button type="button" class="btn btn-warning" (click)="updateUser()" [disabled]="isProcessing">
+      <span *ngIf="isProcessing" class="spinner-border spinner-border-sm me-2" role="status"></span>
+      {{ isProcessing ? 'Procesando...' : 'Actualizar Usuario' }}
+    </button>
+  </ng-template>
+
+
+  <ng-template #userDeleteTemplate class="text-center">
+    <div class="card bg-danger text-white p-3">
+      <h3 class="text-warning text-center">¿Esta seguro que desea eliminar el siguiente usuario?</h3>
+      <h2 class="text-white text-center">{{ delUser.nomUsu }} {{ delUser.patUsu }} {{ delUser.matUsu }}</h2>
+    </div>
+  </ng-template>
+  <ng-template #contentDeleteButton>
+    <button type="button" class="btn btn-danger" (click)="deleteUser()" [disabled]="isProcessing">
+      <span *ngIf="isProcessing" class="spinner-border spinner-border-sm me-2" role="status"></span>
+      {{ isProcessing ? 'Procesando...' : 'Eliminar Usuario' }}
+    </button>
+  </ng-template>
+
+  <ng-template #userDataTemplate class="text-center">
+    <table class="table table-sm">
+      <tr>
+        <td [width]="50"></td>
+        <td [width]="50"></td>
+      </tr>
+      <tr>
+        <td style="text-align: right;"><b>NOMBRE:</b></td>
+        <td>{{ updUser.nomUsu }}</td>
+      </tr>
+      <tr>
+        <td style="text-align: right;"><b>APELLIDO PATERNO:</b></td>
+        <td>{{ updUser.patUsu }}</td>
+      </tr>
+      <tr>
+        <td style="text-align: right;"> <b>APELLIDO MATERNO:</b></td>
+        <td>{{ updUser.matUsu }}</td>
+      </tr>
+      <tr>
+        <td style="text-align: right;"><b>CELULAR:</b></td>
+        <td>{{ updUser.celUsu }}</td>
+      </tr>
+    </table>
+  </ng-template>
+  <ng-template #contentDataButton>
+  </ng-template>
+
+
+  <h2>Gestión de Usuarios</h2>
+  <div class="card m-3">
+    <div class="table-responsive">
+      <table class="table table-striped table-hover table-bordered table-sm">
+        <thead>
+          <th>#</th>
+          <th>NOMBRE</th>
+          <th>APELLIDO PATERNO</th>
+          <th>APELLIDO MATERNO</th>
+          <th>CELULAR</th>
+          <th>ACCIONES</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ user.nomUsu }}</td>
+            <td>{{ user.patUsu }}</td>
+            <td>{{ user.matUsu }}</td>
+            <td>{{ user.celUsu }}</td>
+            <td>
+              <button class="btn btn-primary btn-sm"
+                (click)="openModalData(user,userDataTemplate,contentDataButton, 'Datos de Usuario')">Ver</button>
+              <button class="btn btn-warning btn-sm"
+                (click)="openModalEdita(user,userUpdateTemplate,contentUpdateButton, 'Edita Usuario')">Editar</button>
+              <button class="btn btn-danger btn-sm"
+                (click)="openModalElimina(user,userDeleteTemplate,contentDeleteButton, 'Elimina Usuario')">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
