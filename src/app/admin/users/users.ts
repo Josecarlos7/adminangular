@@ -6,12 +6,13 @@ import { User } from '../models/User';
 import { UsersService } from './users.service';
 import { ModalBase } from '../components/modal-base/modal-base';
 import { NotificationsService } from '../components/notifications/notifications.service';
-import { Utils } from '../utils/utils/utils';
 import { DatePicker } from "../components/date-picker/date-picker";
+import { FaIconComponent, FontAwesomeModule } from '@fortawesome/angular-fontawesome'; // ← Módulo completo
+import { faUser, faCalendar, faSave, faPlus, faPen, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-users',
-  imports: [CommonModule, FormsModule, NgbCarouselModule, NgbDatepickerModule, DatePicker],
+  imports: [CommonModule, FormsModule, NgbCarouselModule, NgbDatepickerModule, DatePicker, FaIconComponent, FontAwesomeModule],
   templateUrl: './users.html',
   standalone: true,
   styleUrl: './users.css'
@@ -24,6 +25,14 @@ export class Users {
   modalRef: any;
   isProcessing: boolean = false;
   private notification = inject(NotificationsService); // ← Inyección correcta
+
+  faPlus = faPlus;
+  fauser = faUser;
+  faCalendar = faCalendar;
+  faSave = faSave;
+  faPen = faPen;
+  faTrash = faTrashAlt;
+  faEye = faEye;
 
 
   constructor(

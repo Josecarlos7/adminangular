@@ -1,12 +1,15 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
+import { NotificationsService } from '../../admin/components/notifications/notifications.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ErrorInterceptor implements HttpInterceptor {
+  private notification = inject(NotificationsService); 
+
   constructor(
     private router: Router,
     //private notification: NotificationService // Asegúrate de tener un servicio para mostrar notificaciones
@@ -56,8 +59,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     // Mostrar notificación (excepto para ciertos casos)
     if (showNotification) {
-      //this.notification.showError(errorMessage); //notificacion de material
-      //this.notification.showCustomNotification('error',error.message);//notificacion personalizada
+      console.log('ErrorInterceptor.handleHttpError',errorMessage);
+      //this.notification.showError(errorMessage); 
     }
 
     // Log para desarrollo

@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
         [class]="getToastClass(toast.type)"
         [autohide]="true"
         [delay]="toast.delay || 5000"
+        [class]="getToastClass(toast.type)"
         (hidden)="toastService.remove(i)"
       >
         {{ toast.message }}
