@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { faCalendar, } from '@fortawesome/free-solid-svg-icons';
+import { FaIconComponent, FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @Component({
   selector: 'app-date-picker',
-  imports: [FormsModule, NgbDatepickerModule],
+  imports: [FormsModule, NgbDatepickerModule, FaIconComponent, FontAwesomeModule],
   standalone: true,
   templateUrl: './date-picker.html',
   styleUrl: './date-picker.css'
@@ -17,6 +19,8 @@ export class DatePicker implements OnChanges {
   maxDate: NgbDateStruct;
   minDate: NgbDateStruct;
   dateObject: NgbDateStruct | null = null;
+
+  faCalendar = faCalendar;
 
   constructor() {
     const today = new Date();

@@ -1,0 +1,134 @@
+/* Layout principal */
+.d-flex.vh-100 {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Sidebar IZQUIERDO */
+.sidebar-left {
+  width: 300px;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+  overflow-y: auto;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6; /* Borde derecho en lugar de izquierdo */
+  position: relative;
+  z-index: 1000;
+  order: 1; /* Asegura que esté primero */
+}
+
+/* Sidebar colapsado */
+.sidebar-left.collapsed {
+  width: 60px;
+  margin-right: -240px; /* Se contrae hacia la izquierda */
+}
+
+.sidebar-left.collapsed .sidebar-header h5,
+.sidebar-left.collapsed .sidebar-body,
+.sidebar-left.collapsed .list-group-item span {
+  display: none !important;
+}
+
+.sidebar-left.collapsed .sidebar-header {
+  justify-content: center !important;
+  padding: 0.5rem !important;
+}
+
+.sidebar-left.collapsed .btn-sm {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
+
+/* Contenido principal */
+.flex-grow-1 {
+  flex: 1;
+  transition: margin-left 0.3s ease; /* Margen izquierdo en lugar de derecho */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  order: 2; /* Asegura que esté después del sidebar */
+}
+
+.flex-grow-1.sidebar-collapsed {
+  margin-left: 60px; /* Margen izquierdo para el sidebar colapsado */
+}
+
+/* Container del contenido principal */
+.main-content-container {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 20px;
+}
+
+/* Header del sidebar */
+.sidebar-header {
+  background-color: #e9ecef;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+
+/* Contenido del sidebar */
+.sidebar-body {
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+}
+
+/* List group items */
+.list-group-item {
+  border: none;
+  border-radius: 0.25rem !important;
+  margin-bottom: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.list-group-item:hover {
+  background-color: #e9ecef !important;
+  transform: translateX(2px);
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .sidebar-left {
+    position: fixed;
+    left: 0;
+    top: 56px; /* Debajo del navbar */
+    height: calc(100vh - 56px);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1); /* Sombra a la derecha */
+    z-index: 1050;
+  }
+  
+  .sidebar-left.collapsed {
+    transform: translateX(calc(-100% + 60px)); /* Se oculta hacia la izquierda */
+  }
+  
+  .flex-grow-1.sidebar-collapsed {
+    margin-left: 0;
+  }
+}
+
+/* Bootstrap icons */
+.bi {
+  font-size: 1rem;
+  vertical-align: -0.125em;
+}
+
+/* Asegurar que el contenido sea responsive */
+@media (max-width: 576px) {
+  .main-content-container {
+    padding: 15px;
+  }
+}
+
+/* Para router-outlet */
+router-outlet {
+  display: none;
+}
+
+router-outlet + * {
+  width: 100%;
+  height: 100%;
+}
