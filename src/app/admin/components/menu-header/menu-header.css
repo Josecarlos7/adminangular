@@ -132,3 +132,13 @@ router-outlet + * {
   width: 100%;
   height: 100%;
 }
+
+.nav-link {
+  cursor: pointer;
+}
+
+.nav-link.active {
+  background-color: #57a8ff;
+  color: white !important;
+  border-radius: 4px;
+}

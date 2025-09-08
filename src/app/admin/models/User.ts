@@ -5,6 +5,8 @@ export class User {
     public patUsu: string | null = null,
     public matUsu: string | null = null,
     public celUsu: string | null = null,
-    public fecNacUsu: string | null = null
+    public fecNacUsu: string | null = null,
+    public usuUsu: string | null = null,
+    public passUsu: string | null = null
   ) { }
 }

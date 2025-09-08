@@ -8,7 +8,7 @@ import { User } from '../models/User';
 })
 export class UsersService {
 
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = 'http://localhost:7070/api';
 
   private userCountSource = new BehaviorSubject<number>(0);
   userCount$ = this.userCountSource.asObservable();

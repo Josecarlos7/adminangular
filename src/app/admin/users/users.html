@@ -29,6 +29,14 @@
         <app-date-picker [(value)]="newUser.fecNacUsu">
         </app-date-picker>
       </div>
+      <div class="col-md-6">
+        <label for="usuUsu" class="form-label">Usuario:</label>
+        <input [(ngModel)]="newUser.usuUsu" type="text" class="form-control" name="usuUsu">
+      </div>
+      <div class="col-md-6">
+        <label for="passUsu" class="form-label">Password:</label>
+        <input [(ngModel)]="newUser.passUsu" type="password" class="form-control" name="passUsu">
+      </div>
     </form>
   </ng-template>
   <ng-template #contentRegisterButton>
@@ -64,6 +72,14 @@
         <label for="fecNacUsu" class="form-label">Fecha de nacimiento:</label>
         <app-date-picker [(value)]="updUser.fecNacUsu">
         </app-date-picker>
+      </div>
+      <div class="col-md-6">
+        <label for="usuUsu" class="form-label">Usuario:</label>
+        <input [(ngModel)]="updUser.usuUsu" type="text" class="form-control" name="usuUsu">
+      </div>
+      <div class="col-md-6">
+        <label for="passUsu" class="form-label">Password:</label>
+        <input [(ngModel)]="updUser.passUsu" type="password" class="form-control" name="passUsu">
       </div>
     </form>
   </ng-template>

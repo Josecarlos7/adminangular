@@ -3,7 +3,7 @@ import { UsersService } from '../../users/users.service';
 import { User } from '../../models/User';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons';
@@ -17,7 +17,10 @@ import { faChevronRight, faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 })
 export class MenuHeader {
 
-  constructor(private userService: UsersService, private offcanvasService: NgbOffcanvas) { }
+  constructor(
+    private userService: UsersService, 
+    private router: Router
+  ) { }
 
   users: User[] = [];
   countUsers: number = 0;
@@ -51,5 +54,14 @@ export class MenuHeader {
         console.log('[components.menu-header].[subscribeToUserCount].[count] ==>> ', count);
       }
     );
+  }
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
+  }
+
+  // Método para verificar si una ruta está activa
+  isActive(route: string): boolean {
+    return this.router.url === `/${route}` || this.router.url === route;
   }
 }
